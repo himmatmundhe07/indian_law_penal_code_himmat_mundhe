@@ -30,11 +30,14 @@ const LawsList = () => {
   const debouncedSearch = useDebounce(search, 500);
   const [filters, setFilters] = useState(() => {
     const saved = sessionStorage.getItem('lawsFilters');
-    if (saved && saved !== 'undefined') {
+    if (saved && saved !== 'undefined' && saved !== 'null') {
       try {
-        return JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === 'object') {
+          return parsed;
+        }
       } catch (e) {
-        return { act: 'all', category: 'all', status: 'all' };
+        // Fallback to default
       }
     }
     return { act: 'all', category: 'all', status: 'all' };
