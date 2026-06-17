@@ -10,7 +10,6 @@ import ConfirmDialog from '../../components/common/ConfirmDialog';
 import LawFormModal from './LawFormModal';
 import PageHeader from '../../components/common/PageHeader';
 
-const FILTER_CATEGORIES = ['CyberCrime', 'Fraud', 'Murder', 'Theft', 'Robbery', 'Assault', 'Kidnapping', 'Domestic Violence', 'Dowry', 'Constitutional'];
 const STATUS_OPTIONS = ['active', 'inactive', 'repealed'];
 
 const LawsList = () => {
@@ -22,6 +21,8 @@ const LawsList = () => {
   const [loading, setLoading] = useState(false);
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 });
   
+  const [categories, setCategories] = useState([]);
+
   // Filters (Persisted in sessionStorage)
   const [search, setSearch] = useState(() => {
     return sessionStorage.getItem('lawsSearch') || '';
@@ -41,6 +42,22 @@ const LawsList = () => {
   const [showFilters, setShowFilters] = useState(() => {
     return sessionStorage.getItem('lawsShowFilters') === 'true';
   });
+
+  useEffect(() => {
+    // Fetch dynamic categories
+    const loadCategories = async () => {
+      try {
+        const response = await api.get('/stats/laws/by-category');
+        if (response.data?.success) {
+          const fetchedCats = response.data.data.map(item => item.category);
+          setCategories(fetchedCats.sort());
+        }
+      } catch (error) {
+        console.error("Failed to load categories", error);
+      }
+    };
+    loadCategories();
+  }, []);
 
   useEffect(() => {
     sessionStorage.setItem('lawsSearch', search);
@@ -324,7 +341,7 @@ const LawsList = () => {
                 className="btn-secondary text-left"
               >
                 <option value="all">Category</option>
-                {FILTER_CATEGORIES.map(cat => (
+                {categories.map(cat => (
                   <option key={cat} value={cat}>{cat}</option>
                 ))}
               </select>
