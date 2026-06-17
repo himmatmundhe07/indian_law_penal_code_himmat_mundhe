@@ -53,7 +53,7 @@ export default function Dashboard() {
       const safeCount = (r) => {
         if (r.status !== 'fulfilled') return 0;
         const d = r.value?.data;
-        return d?.data?.count ?? d?.count ?? d?.total ?? (typeof d === 'number' ? d : 0);
+        return d?.data?.count ?? d?.data?.total ?? d?.data?.active ?? d?.data?.repealed ?? d?.count ?? d?.total ?? (typeof d === 'number' ? d : 0);
       };
 
       const safeData = (r) => r.status === 'fulfilled' ? (r.value?.data?.data || r.value?.data || []) : [];
