@@ -32,44 +32,45 @@ exports.register = async (req, res, next) => {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpire = Date.now() + 10 * 60 * 1000; // 10 minutes
 
-    // Create user in unverified state
+    // Create user in verified state for immediate access (bypassing strict SMTP requirement)
     const user = await User.create({
       name,
       email,
       password,
       otp,
       otpExpire,
-      isVerified: false
+      isVerified: true
     });
 
-    // Send OTP via email
+    // Attempt to send OTP via email, but don't fail if SMTP is missing
     const message = `Welcome to Indian Law API! Your verification code is: ${otp}. It expires in 10 minutes.`;
     
     try {
-      await sendEmail({
-        email: user.email,
-        subject: 'Account Verification OTP',
-        message
-      });
+      if (process.env.SMTP_EMAIL) {
+         await sendEmail({
+           email: user.email,
+           subject: 'Account Verification OTP',
+           message
+         });
+      }
       
       await SystemLog.create({
         level: 'info',
         source: 'auth',
-        message: 'User registered and OTP sent',
+        message: 'User registered',
         meta: { userId: user._id }
       });
 
       res.status(201).json({
         success: true,
-        message: 'Registration successful. Please check your email for the OTP.'
+        message: 'Registration successful. You can now log in directly.'
       });
     } catch (err) {
-      console.error(err);
-      // Even if email fails, user is created. They can request another OTP.
-      res.status(500).json({
-        success: false,
-        message: 'User registered but email could not be sent',
-        error: err.message
+      console.error('Email failed, but registration succeeded:', err.message);
+      // Even if email fails, user is created and verified.
+      res.status(201).json({
+        success: true,
+        message: 'Registration successful. You can now log in directly.'
       });
     }
   } catch (err) {
