@@ -15,11 +15,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/health",
+              "raw": "{{baseUrl}}/api/v1/health",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "health"
               ]
             },
@@ -38,11 +40,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -76,11 +80,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/{{lawId}}?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/{{lawId}}?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "{{lawId}}"
               ],
@@ -110,11 +116,13 @@
               "raw": "{\n  \"chapter\": 1,\n  \"chapter_title\": \"introduction\",\n  \"section\": 600,\n  \"title\": \"Sample Custom Section Title\",\n  \"description\": \"This is a mock description describing the legal bounds of this custom test section.\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -143,11 +151,13 @@
               "raw": "{\n  \"chapter\": 1,\n  \"chapter_title\": \"introduction\",\n  \"section\": 600,\n  \"title\": \"Fully Replaced Section Title\",\n  \"description\": \"The description has been fully replaced in this PUT operation.\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/laws/{{lawId}}?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/{{lawId}}?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "{{lawId}}"
               ],
@@ -177,11 +187,13 @@
               "raw": "{\n  \"title\": \"Partially Updated Title\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/laws/{{lawId}}?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/{{lawId}}?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "{{lawId}}"
               ],
@@ -202,11 +214,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/{{lawId}}?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/{{lawId}}?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "{{lawId}}"
               ],
@@ -227,11 +241,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -269,11 +285,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=2&limit=5&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=2&limit=5&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -311,11 +329,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=3&limit=5&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=3&limit=5&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -353,11 +373,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=4&limit=5&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=4&limit=5&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -395,11 +417,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=5&limit=5&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=5&limit=5&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -437,11 +461,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -479,11 +505,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=10&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=10&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -521,11 +549,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=20&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=20&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -563,11 +593,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=50&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=50&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -605,11 +637,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=100&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=100&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -647,11 +681,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=createdAt",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=createdAt",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -689,11 +725,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=-createdAt",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=-createdAt",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -731,11 +769,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=title",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=title",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -773,11 +813,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=-title",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=-title",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -815,11 +857,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -857,11 +901,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=-section",
+              "raw": "{{baseUrl}}/api/v1/laws?act=ipc&page=1&limit=5&sort=-section",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws"
               ],
               "query": [
@@ -904,11 +950,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/exists/{{lawId}}?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/exists/{{lawId}}?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "exists",
                 "{{lawId}}"
@@ -930,11 +978,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/recent?act=ipc&page=1&limit=5",
+              "raw": "{{baseUrl}}/api/v1/laws/recent?act=ipc&page=1&limit=5",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "recent"
               ],
@@ -963,11 +1013,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/archived?act=ipc&page=1&limit=5",
+              "raw": "{{baseUrl}}/api/v1/laws/archived?act=ipc&page=1&limit=5",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "archived"
               ],
@@ -996,11 +1048,13 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/{{lawId}}/archive?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/{{lawId}}/archive?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "{{lawId}}",
                 "archive"
@@ -1022,11 +1076,13 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/{{lawId}}/restore?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/{{lawId}}/restore?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "{{lawId}}",
                 "restore"
@@ -1048,11 +1104,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/{{lawId}}/history?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/{{lawId}}/history?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "{{lawId}}",
                 "history"
@@ -1074,11 +1132,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/{{lawId}}/summary?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/{{lawId}}/summary?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "{{lawId}}",
                 "summary"
@@ -1100,11 +1160,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/random?act=ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/random?act=ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "random"
               ],
@@ -1125,11 +1187,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/trending?act=ipc&page=1&limit=5",
+              "raw": "{{baseUrl}}/api/v1/laws/trending?act=ipc&page=1&limit=5",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "trending"
               ],
@@ -1163,11 +1227,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=murder",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=murder",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1189,11 +1255,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=murder",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=murder",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1219,11 +1287,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=theft",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=theft",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1249,11 +1319,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=cyber",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=cyber",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1279,11 +1351,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=dowry",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=dowry",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1309,11 +1383,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=marriage",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=marriage",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1339,11 +1415,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=property",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=property",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1369,11 +1447,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=cheating",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=cheating",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1399,11 +1479,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=defamation",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=defamation",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1429,11 +1511,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=rape",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=rape",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1459,11 +1543,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/search/laws?q=kidnapping",
+              "raw": "{{baseUrl}}/api/v1/search/laws?q=kidnapping",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "search",
                 "laws"
               ],
@@ -1494,11 +1580,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1515,11 +1603,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/chapter/1",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/chapter/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "chapter",
@@ -1536,11 +1626,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/section/302",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/section/302",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "section",
@@ -1557,11 +1649,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=IPC",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?act=IPC",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1584,11 +1678,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=CrPC",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?act=CrPC",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1611,11 +1707,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=HMA",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?act=HMA",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1638,11 +1736,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=BNS",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?act=BNS",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1665,11 +1765,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=BSA",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?act=BSA",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1692,11 +1794,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=CyberCrime",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=CyberCrime",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1719,11 +1823,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Fraud",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Fraud",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1746,11 +1852,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Murder",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Murder",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1773,11 +1881,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Theft",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Theft",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1800,11 +1910,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Robbery",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Robbery",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1827,11 +1939,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Assault",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Assault",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1854,11 +1968,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Kidnapping",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Kidnapping",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1881,11 +1997,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Domestic+Violence",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Domestic+Violence",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1908,11 +2026,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Dowry",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Dowry",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1935,11 +2055,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Constitutional",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?category=Constitutional",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1962,11 +2084,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?status=active",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?status=active",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -1989,11 +2113,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?status=inactive",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?status=inactive",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -2016,11 +2142,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/laws/filter/act/ipc?status=repealed",
+              "raw": "{{baseUrl}}/api/v1/laws/filter/act/ipc?status=repealed",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "laws",
                 "filter",
                 "act",
@@ -2048,11 +2176,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/most-viewed",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/most-viewed",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "most-viewed"
@@ -2068,11 +2198,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/by-category",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/by-category",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "by-category"
@@ -2088,11 +2220,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/by-state",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/by-state",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "by-state"
@@ -2108,11 +2242,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/by-court",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/by-court",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "by-court"
@@ -2128,11 +2264,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/recent-updates",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/recent-updates",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "recent-updates"
@@ -2148,11 +2286,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/popularity",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/popularity",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "popularity"
@@ -2168,11 +2308,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/search-trends",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/search-trends",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "search-trends"
@@ -2188,11 +2330,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/user-activity",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/user-activity",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "user-activity"
@@ -2208,11 +2352,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/analytics/laws/complexity",
+              "raw": "{{baseUrl}}/api/v1/analytics/laws/complexity",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "analytics",
                 "laws",
                 "complexity"
@@ -2233,11 +2379,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/count",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/count",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "count"
@@ -2253,11 +2401,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/active",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/active",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "active"
@@ -2273,11 +2423,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/repealed",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/repealed",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "repealed"
@@ -2293,11 +2445,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/by-act",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/by-act",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "by-act"
@@ -2313,11 +2467,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/by-category",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/by-category",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "by-category"
@@ -2333,11 +2489,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/by-state",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/by-state",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "by-state"
@@ -2353,11 +2511,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/by-court",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/by-court",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "by-court"
@@ -2373,11 +2533,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/recent",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/recent",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "recent"
@@ -2393,11 +2555,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/trending",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/trending",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "trending"
@@ -2413,11 +2577,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/stats/laws/bookmarks",
+              "raw": "{{baseUrl}}/api/v1/stats/laws/bookmarks",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "stats",
                 "laws",
                 "bookmarks"
@@ -2438,11 +2604,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/register",
+              "raw": "{{baseUrl}}/api/v1/auth/register",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "register"
               ]
@@ -2457,11 +2625,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/login",
+              "raw": "{{baseUrl}}/api/v1/auth/login",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "login"
               ]
@@ -2476,11 +2646,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/logout",
+              "raw": "{{baseUrl}}/api/v1/auth/logout",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "logout"
               ]
@@ -2495,11 +2667,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/profile",
+              "raw": "{{baseUrl}}/api/v1/auth/profile",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "profile"
               ]
@@ -2514,11 +2688,13 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/profile",
+              "raw": "{{baseUrl}}/api/v1/auth/profile",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "profile"
               ]
@@ -2533,11 +2709,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/forgot-password",
+              "raw": "{{baseUrl}}/api/v1/auth/forgot-password",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "forgot-password"
               ]
@@ -2552,11 +2730,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/reset-password",
+              "raw": "{{baseUrl}}/api/v1/auth/reset-password",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "reset-password"
               ]
@@ -2571,11 +2751,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/change-password",
+              "raw": "{{baseUrl}}/api/v1/auth/change-password",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "change-password"
               ]
@@ -2590,11 +2772,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/verify-otp",
+              "raw": "{{baseUrl}}/api/v1/auth/verify-otp",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "verify-otp"
               ]
@@ -2609,11 +2793,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/send-otp",
+              "raw": "{{baseUrl}}/api/v1/auth/send-otp",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "send-otp"
               ]
@@ -2628,11 +2814,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/auth/sessions",
+              "raw": "{{baseUrl}}/api/v1/auth/sessions",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "auth",
                 "sessions"
               ]
@@ -2652,11 +2840,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/jwt/generate-token",
+              "raw": "{{baseUrl}}/api/v1/jwt/generate-token",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "jwt",
                 "generate-token"
               ]
@@ -2671,11 +2861,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/jwt/verify-token",
+              "raw": "{{baseUrl}}/api/v1/jwt/verify-token",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "jwt",
                 "verify-token"
               ]
@@ -2690,11 +2882,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/jwt/refresh-token",
+              "raw": "{{baseUrl}}/api/v1/jwt/refresh-token",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "jwt",
                 "refresh-token"
               ]
@@ -2709,11 +2903,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/jwt/revoke-token",
+              "raw": "{{baseUrl}}/api/v1/jwt/revoke-token",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "jwt",
                 "revoke-token"
               ]
@@ -2728,11 +2924,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/jwt/profile",
+              "raw": "{{baseUrl}}/api/v1/jwt/profile",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "jwt",
                 "profile"
               ]
@@ -2747,11 +2945,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/jwt/dashboard",
+              "raw": "{{baseUrl}}/api/v1/jwt/dashboard",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "jwt",
                 "dashboard"
               ]
@@ -2766,11 +2966,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/jwt/private-laws",
+              "raw": "{{baseUrl}}/api/v1/jwt/private-laws",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "jwt",
                 "private-laws"
               ]
@@ -2785,11 +2987,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/jwt/private-analytics",
+              "raw": "{{baseUrl}}/api/v1/jwt/private-analytics",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "jwt",
                 "private-analytics"
               ]
@@ -2809,11 +3013,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/users",
+              "raw": "{{baseUrl}}/api/v1/admin/users",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "users"
               ]
@@ -2828,11 +3034,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/users/123",
+              "raw": "{{baseUrl}}/api/v1/admin/users/123",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "users",
                 "123"
@@ -2848,11 +3056,13 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/users/123/ban",
+              "raw": "{{baseUrl}}/api/v1/admin/users/123/ban",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "users",
                 "123",
@@ -2869,11 +3079,13 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/users/123/unban",
+              "raw": "{{baseUrl}}/api/v1/admin/users/123/unban",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "users",
                 "123",
@@ -2890,11 +3102,13 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/users/123/role",
+              "raw": "{{baseUrl}}/api/v1/admin/users/123/role",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "users",
                 "123",
@@ -2911,11 +3125,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/reports",
+              "raw": "{{baseUrl}}/api/v1/admin/reports",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "reports"
               ]
@@ -2930,11 +3146,13 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/reports/123/resolve",
+              "raw": "{{baseUrl}}/api/v1/admin/reports/123/resolve",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "reports",
                 "123",
@@ -2951,11 +3169,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/system/health",
+              "raw": "{{baseUrl}}/api/v1/admin/system/health",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "system",
                 "health"
@@ -2971,11 +3191,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/system/logs",
+              "raw": "{{baseUrl}}/api/v1/admin/system/logs",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "system",
                 "logs"
@@ -2991,11 +3213,13 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/system/maintenance",
+              "raw": "{{baseUrl}}/api/v1/admin/system/maintenance",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "system",
                 "maintenance"
@@ -3011,11 +3235,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/cache/clear",
+              "raw": "{{baseUrl}}/api/v1/admin/cache/clear",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "cache",
                 "clear"
@@ -3031,11 +3257,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/admin/security/events",
+              "raw": "{{baseUrl}}/api/v1/admin/security/events",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "admin",
                 "security",
                 "events"
@@ -3056,11 +3284,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/logger",
+              "raw": "{{baseUrl}}/api/v1/middleware/logger",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "logger"
               ]
@@ -3075,11 +3305,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/auth",
+              "raw": "{{baseUrl}}/api/v1/middleware/auth",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "auth"
               ]
@@ -3094,11 +3326,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/cache",
+              "raw": "{{baseUrl}}/api/v1/middleware/cache",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "cache"
               ]
@@ -3113,11 +3347,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/rate-limit",
+              "raw": "{{baseUrl}}/api/v1/middleware/rate-limit",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "rate-limit"
               ]
@@ -3132,11 +3368,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/error-handler",
+              "raw": "{{baseUrl}}/api/v1/middleware/error-handler",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "error-handler"
               ]
@@ -3151,11 +3389,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/request-time",
+              "raw": "{{baseUrl}}/api/v1/middleware/request-time",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "request-time"
               ]
@@ -3170,11 +3410,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/security",
+              "raw": "{{baseUrl}}/api/v1/middleware/security",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "security"
               ]
@@ -3189,11 +3431,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/cors",
+              "raw": "{{baseUrl}}/api/v1/middleware/cors",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "cors"
               ]
@@ -3208,11 +3452,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/compression",
+              "raw": "{{baseUrl}}/api/v1/middleware/compression",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "compression"
               ]
@@ -3227,11 +3473,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/middleware/validation",
+              "raw": "{{baseUrl}}/api/v1/middleware/validation",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
+                "api",
+                "v1",
                 "middleware",
                 "validation"
               ]
