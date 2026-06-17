@@ -96,10 +96,15 @@ const TopNavbar = ({ setMobileOpen }) => {
               sx: {
                 mt: 1,
                 minWidth: '200px',
+                backgroundColor: 'var(--color-bg-elevated)',
+                color: 'var(--color-ink)',
                 '& .MuiMenuItem-root': {
                   fontFamily: 'var(--font-sans)',
                   fontSize: '13px',
                   color: 'var(--color-ink)',
+                  '&:hover': {
+                    backgroundColor: 'var(--color-bg-border)',
+                  }
                 }
               },
             }}
