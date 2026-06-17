@@ -29,7 +29,14 @@ const LawsList = () => {
   const debouncedSearch = useDebounce(search, 500);
   const [filters, setFilters] = useState(() => {
     const saved = sessionStorage.getItem('lawsFilters');
-    return saved ? JSON.parse(saved) : { act: 'all', category: 'all', status: 'all' };
+    if (saved && saved !== 'undefined') {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        return { act: 'all', category: 'all', status: 'all' };
+      }
+    }
+    return { act: 'all', category: 'all', status: 'all' };
   });
   const [showFilters, setShowFilters] = useState(() => {
     return sessionStorage.getItem('lawsShowFilters') === 'true';
