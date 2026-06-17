@@ -22,11 +22,30 @@ const LawsList = () => {
   const [loading, setLoading] = useState(false);
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 });
   
-  // Filters
-  const [search, setSearch] = useState('');
+  // Filters (Persisted in sessionStorage)
+  const [search, setSearch] = useState(() => {
+    return sessionStorage.getItem('lawsSearch') || '';
+  });
   const debouncedSearch = useDebounce(search, 500);
-  const [filters, setFilters] = useState({ act: 'all', category: 'all', status: 'all' });
-  const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState(() => {
+    const saved = sessionStorage.getItem('lawsFilters');
+    return saved ? JSON.parse(saved) : { act: 'all', category: 'all', status: 'all' };
+  });
+  const [showFilters, setShowFilters] = useState(() => {
+    return sessionStorage.getItem('lawsShowFilters') === 'true';
+  });
+
+  useEffect(() => {
+    sessionStorage.setItem('lawsSearch', search);
+  }, [search]);
+
+  useEffect(() => {
+    sessionStorage.setItem('lawsFilters', JSON.stringify(filters));
+  }, [filters]);
+
+  useEffect(() => {
+    sessionStorage.setItem('lawsShowFilters', showFilters);
+  }, [showFilters]);
 
   // Modals
   const [showForm, setShowForm] = useState(false);
