@@ -154,6 +154,7 @@ export default function Dashboard() {
                             angle={-30} 
                             textAnchor="end" 
                             interval={0} 
+                            tickFormatter={(value) => value.length > 15 ? value.substring(0, 15) + '...' : value}
                           />
                           <YAxis 
                             tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 

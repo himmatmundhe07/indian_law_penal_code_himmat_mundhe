@@ -93,6 +93,7 @@ export default function AnalyticsDashboard() {
                   width={140} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(value) => typeof value === 'string' && value.length > 15 ? value.substring(0, 15) + '...' : value}
                 />
                 <Tooltip 
                   contentStyle={{ backgroundColor: 'var(--color-bg-elevated)', border: '1px solid var(--color-rule)', borderRadius: '2px', color: 'var(--color-parchment)', fontFamily: 'var(--font-sans)', fontSize: '12px' }} 
@@ -153,6 +154,7 @@ export default function AnalyticsDashboard() {
                   interval={0} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(value) => typeof value === 'string' && value.length > 15 ? value.substring(0, 15) + '...' : value}
                 />
                 <YAxis 
                   tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 
@@ -216,6 +218,7 @@ export default function AnalyticsDashboard() {
                   width={140} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(value) => typeof value === 'string' && value.length > 15 ? value.substring(0, 15) + '...' : value}
                 />
                 <Tooltip 
                   contentStyle={{ backgroundColor: 'var(--color-bg-elevated)', border: '1px solid var(--color-rule)', borderRadius: '2px', color: 'var(--color-parchment)', fontFamily: 'var(--font-sans)', fontSize: '12px' }} 
@@ -270,6 +273,7 @@ export default function AnalyticsDashboard() {
                   tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(value) => typeof value === 'string' && value.length > 15 ? value.substring(0, 15) + '...' : value}
                 />
                 <YAxis 
                   tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 
@@ -307,6 +311,7 @@ export default function AnalyticsDashboard() {
                   interval={0} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(value) => typeof value === 'string' && value.length > 15 ? value.substring(0, 15) + '...' : value}
                 />
                 <YAxis 
                   tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 
