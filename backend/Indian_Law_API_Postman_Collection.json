@@ -1,0 +1,4245 @@
+{
+  "info": {
+    "_postman_id": "indian-law-api-collection-himmat",
+    "name": "Indian Law API - Basic CRUD",
+    "description": "Postman Collection for testing the Basic CRUD endpoints of the Indian Penal & Legal API project.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "General & Utility",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Checks the running status of the Express server and MongoDB connection state."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Basic CRUD Operations",
+      "item": [
+        {
+          "name": "Fetch All Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Law by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/{{lawId}}?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "{{lawId}}"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Fetches a single law by ID and automatically increments its views count."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Law Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chapter\": 1,\n  \"chapter_title\": \"introduction\",\n  \"section\": 600,\n  \"title\": \"Sample Custom Section Title\",\n  \"description\": \"This is a mock description describing the legal bounds of this custom test section.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Creates a new law record in the collection, dynamically mapping the input standard JSON keys to the target act's custom database schema layout."
+          },
+          "response": []
+        },
+        {
+          "name": "Replace Law Record (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chapter\": 1,\n  \"chapter_title\": \"introduction\",\n  \"section\": 600,\n  \"title\": \"Fully Replaced Section Title\",\n  \"description\": \"The description has been fully replaced in this PUT operation.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/laws/{{lawId}}?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "{{lawId}}"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Replaces all fields of an existing law document and logs the action in the history timeline."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Law Record (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Partially Updated Title\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/laws/{{lawId}}?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "{{lawId}}"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Updates specified fields of a law document and logs details inside its history tracking array."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Law Record (Soft Delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/{{lawId}}?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "{{lawId}}"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Marks a law record as isDeleted: true (soft delete), ensuring it doesn't display in list queries while preserving audit trail."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Page 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Page 2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=2&limit=5&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "page",
+                  "value": "2"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Page 3)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=3&limit=5&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "page",
+                  "value": "3"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Page 4)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=4&limit=5&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "page",
+                  "value": "4"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Page 5)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=5&limit=5&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "page",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Limit 5)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Limit 10)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=10&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Limit 20)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=20&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Limit 50)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=50&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Limit 100)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=100&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Sort createdAt)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=createdAt",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "sort",
+                  "value": "createdAt"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Sort -createdAt)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=-createdAt",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "sort",
+                  "value": "-createdAt"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Sort title)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=title",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "sort",
+                  "value": "title"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Sort -title)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=-title",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "sort",
+                  "value": "-title"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Sort section)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "sort",
+                  "value": "section"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Laws (Sort -section)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws?act=ipc&page=1&limit=5&sort=-section",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc",
+                  "description": "Allowed acts: ipc, crpc, cpc, hma, iea, nia, ida, mva"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "sort",
+                  "value": "section",
+                  "description": "Sort by fields (e.g. section, -section, views, -views, createdAt, -createdAt)"
+                },
+                {
+                  "key": "sort",
+                  "value": "-section"
+                }
+              ]
+            },
+            "description": "Fetch a paginated, sorted list of laws from the target collection."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Actions & Utilities",
+      "item": [
+        {
+          "name": "Check If Law Exists",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/exists/{{lawId}}?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "exists",
+                "{{lawId}}"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Verifies whether a law document exists with the given ID without loading its description."
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Recent Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/recent?act=ipc&page=1&limit=5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "recent"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Retrieves the newest laws sorted by creation date descending."
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Archived Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/archived?act=ipc&page=1&limit=5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "archived"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Fetches a paginated list of laws marked with isArchived: true."
+          },
+          "response": []
+        },
+        {
+          "name": "Archive Law",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/{{lawId}}/archive?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "{{lawId}}",
+                "archive"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Archives a law record."
+          },
+          "response": []
+        },
+        {
+          "name": "Restore Archived Law",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/{{lawId}}/restore?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "{{lawId}}",
+                "restore"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Restores a previously archived law back to active status."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Update History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/{{lawId}}/history?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "{{lawId}}",
+                "history"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Fetches a record's edit history timeline logs."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Law Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/{{lawId}}/summary?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "{{lawId}}",
+                "summary"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Fetches a simplified, shortened description summary of a law document."
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Random Law",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/random?act=ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "random"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                }
+              ]
+            },
+            "description": "Uses MongoDB aggregation stage $sample to pull a random active law record."
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Trending Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/trending?act=ipc&page=1&limit=5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "trending"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "ipc"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Lists the most frequently visited/viewed laws sorted by views count descending."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Search Routes",
+      "item": [
+        {
+          "name": "Search Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=murder",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: murder",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=murder",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "murder"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: theft",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=theft",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "theft"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: cyber",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=cyber",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "cyber"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: dowry",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=dowry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "dowry"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: marriage",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=marriage",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "marriage"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: property",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=property",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "property"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: cheating",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=cheating",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "cheating"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: defamation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=defamation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "defamation"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: rape",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=rape",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "rape"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Keyword: kidnapping",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/search/laws?q=kidnapping",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "search",
+                "laws"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "murder",
+                  "description": "Search query string"
+                },
+                {
+                  "key": "q",
+                  "value": "kidnapping"
+                }
+              ]
+            },
+            "description": "Search laws by keyword across section titles, descriptions, and categories."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Filtering Routes",
+      "item": [
+        {
+          "name": "Filter by Act",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Chapter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/chapter/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "chapter",
+                "1"
+              ]
+            },
+            "description": "Filter laws by chapter ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Section Number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/section/302",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "section",
+                "302"
+              ]
+            },
+            "description": "Filter laws by section number"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Act: IPC",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=IPC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "IPC"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Act: CrPC",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=CrPC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "CrPC"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Act: HMA",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=HMA",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "HMA"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Act: BNS",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=BNS",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "BNS"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Act: BSA",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?act=BSA",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "act",
+                  "value": "BSA"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: CyberCrime",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=CyberCrime",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "CyberCrime"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Fraud",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Fraud",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Fraud"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Murder",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Murder",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Murder"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Theft",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Theft",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Theft"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Robbery",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Robbery",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Robbery"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Assault",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Assault",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Assault"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Kidnapping",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Kidnapping",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Kidnapping"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Domestic Violence",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Domestic+Violence",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Domestic Violence"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Dowry",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Dowry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Dowry"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Category: Constitutional",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?category=Constitutional",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Constitutional"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Status: active",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?status=active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "active"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Status: inactive",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?status=inactive",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "inactive"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Status: repealed",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/laws/filter/act/ipc?status=repealed",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "laws",
+                "filter",
+                "act",
+                "ipc"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "repealed"
+                }
+              ]
+            },
+            "description": "Filter laws by act"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Analytics Routes",
+      "item": [
+        {
+          "name": "Most Viewed Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/most-viewed",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "most-viewed"
+              ]
+            },
+            "description": "Analyze most viewed laws"
+          },
+          "response": []
+        },
+        {
+          "name": "Laws by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/by-category",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "by-category"
+              ]
+            },
+            "description": "Analyze laws by category"
+          },
+          "response": []
+        },
+        {
+          "name": "Laws by State",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/by-state",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "by-state"
+              ]
+            },
+            "description": "Analyze laws by state"
+          },
+          "response": []
+        },
+        {
+          "name": "Court Distributions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/by-court",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "by-court"
+              ]
+            },
+            "description": "Analyze court distributions"
+          },
+          "response": []
+        },
+        {
+          "name": "Recent Updates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/recent-updates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "recent-updates"
+              ]
+            },
+            "description": "Analyze recent updates"
+          },
+          "response": []
+        },
+        {
+          "name": "Popularity Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/popularity",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "popularity"
+              ]
+            },
+            "description": "Analyze popularity metrics"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Trends",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/search-trends",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "search-trends"
+              ]
+            },
+            "description": "Analyze search trends"
+          },
+          "response": []
+        },
+        {
+          "name": "User Activity",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/user-activity",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "user-activity"
+              ]
+            },
+            "description": "Analyze user activity"
+          },
+          "response": []
+        },
+        {
+          "name": "Complexity Distribution",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/laws/complexity",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "laws",
+                "complexity"
+              ]
+            },
+            "description": "Analyze complexity distribution"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Statistics Routes",
+      "item": [
+        {
+          "name": "Count Total Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/count",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "count"
+              ]
+            },
+            "description": "Count total laws"
+          },
+          "response": []
+        },
+        {
+          "name": "Count Active Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "active"
+              ]
+            },
+            "description": "Count active laws"
+          },
+          "response": []
+        },
+        {
+          "name": "Count Repealed Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/repealed",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "repealed"
+              ]
+            },
+            "description": "Count repealed laws"
+          },
+          "response": []
+        },
+        {
+          "name": "Count Laws by Act",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/by-act",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "by-act"
+              ]
+            },
+            "description": "Count laws by act"
+          },
+          "response": []
+        },
+        {
+          "name": "Count Laws by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/by-category",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "by-category"
+              ]
+            },
+            "description": "Count by category"
+          },
+          "response": []
+        },
+        {
+          "name": "Count Laws by State",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/by-state",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "by-state"
+              ]
+            },
+            "description": "Count by state"
+          },
+          "response": []
+        },
+        {
+          "name": "Count Laws by Court",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/by-court",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "by-court"
+              ]
+            },
+            "description": "Count by court"
+          },
+          "response": []
+        },
+        {
+          "name": "Recent Law Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/recent",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "recent"
+              ]
+            },
+            "description": "Recent law stats"
+          },
+          "response": []
+        },
+        {
+          "name": "Trending Law Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/trending",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "trending"
+              ]
+            },
+            "description": "Trending law stats"
+          },
+          "response": []
+        },
+        {
+          "name": "Bookmark Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stats/laws/bookmarks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats",
+                "laws",
+                "bookmarks"
+              ]
+            },
+            "description": "Bookmark statistics"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication Routes",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Register a new user"
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Login to account"
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Logout and clear session"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            },
+            "description": "Get current user profile"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "profile"
+              ]
+            },
+            "description": "Update user profile"
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/forgot-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "forgot-password"
+              ]
+            },
+            "description": "Send forgot password OTP"
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password (Body)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/reset-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password"
+              ]
+            },
+            "description": "Reset password using OTP in body"
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/change-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "change-password"
+              ]
+            },
+            "description": "Change password for logged in user"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Email / OTP",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/verify-otp",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "verify-otp"
+              ]
+            },
+            "description": "Verify user email with 6 digit OTP"
+          },
+          "response": []
+        },
+        {
+          "name": "Send OTP",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/send-otp",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "send-otp"
+              ]
+            },
+            "description": "Request a new OTP"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "sessions"
+              ]
+            },
+            "description": "Get active sessions"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "JWT Authentication Routes",
+      "item": [
+        {
+          "name": "Generate Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jwt/generate-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt",
+                "generate-token"
+              ]
+            },
+            "description": "Manually generate a JWT"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jwt/verify-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt",
+                "verify-token"
+              ]
+            },
+            "description": "Verify an existing JWT"
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jwt/refresh-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt",
+                "refresh-token"
+              ]
+            },
+            "description": "Refresh an expired JWT"
+          },
+          "response": []
+        },
+        {
+          "name": "Revoke Token",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jwt/revoke-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt",
+                "revoke-token"
+              ]
+            },
+            "description": "Revoke a token"
+          },
+          "response": []
+        },
+        {
+          "name": "JWT Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jwt/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt",
+                "profile"
+              ]
+            },
+            "description": "Access profile via JWT"
+          },
+          "response": []
+        },
+        {
+          "name": "JWT Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jwt/dashboard",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt",
+                "dashboard"
+              ]
+            },
+            "description": "Access private dashboard"
+          },
+          "response": []
+        },
+        {
+          "name": "Private Laws",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jwt/private-laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt",
+                "private-laws"
+              ]
+            },
+            "description": "Access private laws list"
+          },
+          "response": []
+        },
+        {
+          "name": "Private Analytics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/jwt/private-analytics",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jwt",
+                "private-analytics"
+              ]
+            },
+            "description": "Access private analytics"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin Routes",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users"
+              ]
+            },
+            "description": "Fetch all registered users"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/123",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "123"
+              ]
+            },
+            "description": "Fetch a user by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Ban User",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/123/ban",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "123",
+                "ban"
+              ]
+            },
+            "description": "Ban a specific user"
+          },
+          "response": []
+        },
+        {
+          "name": "Unban User",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/123/unban",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "123",
+                "unban"
+              ]
+            },
+            "description": "Unban a specific user"
+          },
+          "response": []
+        },
+        {
+          "name": "Change User Role",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/users/123/role",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "users",
+                "123",
+                "role"
+              ]
+            },
+            "description": "Promote or demote user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Reports",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reports"
+              ]
+            },
+            "description": "Fetch all user reports"
+          },
+          "response": []
+        },
+        {
+          "name": "Resolve Report",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/reports/123/resolve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "reports",
+                "123",
+                "resolve"
+              ]
+            },
+            "description": "Mark report as resolved"
+          },
+          "response": []
+        },
+        {
+          "name": "Get System Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/system/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "system",
+                "health"
+              ]
+            },
+            "description": "Fetch server health metrics"
+          },
+          "response": []
+        },
+        {
+          "name": "Get System Logs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/system/logs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "system",
+                "logs"
+              ]
+            },
+            "description": "Fetch audit logs"
+          },
+          "response": []
+        },
+        {
+          "name": "Toggle Maintenance",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/system/maintenance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "system",
+                "maintenance"
+              ]
+            },
+            "description": "Toggle maintenance mode"
+          },
+          "response": []
+        },
+        {
+          "name": "Clear Cache",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/cache/clear",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "cache",
+                "clear"
+              ]
+            },
+            "description": "Clear server cache"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Security Events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/security/events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "security",
+                "events"
+              ]
+            },
+            "description": "Fetch security logs"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Middleware Practice Routes",
+      "item": [
+        {
+          "name": "Logger Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/logger",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "logger"
+              ]
+            },
+            "description": "Test logger middleware"
+          },
+          "response": []
+        },
+        {
+          "name": "Auth Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/auth",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "auth"
+              ]
+            },
+            "description": "Test auth middleware"
+          },
+          "response": []
+        },
+        {
+          "name": "Cache Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/cache",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "cache"
+              ]
+            },
+            "description": "Test cache middleware"
+          },
+          "response": []
+        },
+        {
+          "name": "Rate Limit Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/rate-limit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "rate-limit"
+              ]
+            },
+            "description": "Test rate limit middleware"
+          },
+          "response": []
+        },
+        {
+          "name": "Error Handler Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/error-handler",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "error-handler"
+              ]
+            },
+            "description": "Test error handler"
+          },
+          "response": []
+        },
+        {
+          "name": "Request Time Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/request-time",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "request-time"
+              ]
+            },
+            "description": "Test request timing"
+          },
+          "response": []
+        },
+        {
+          "name": "Security Headers Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/security",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "security"
+              ]
+            },
+            "description": "Test security headers"
+          },
+          "response": []
+        },
+        {
+          "name": "CORS Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/cors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "cors"
+              ]
+            },
+            "description": "Test CORS"
+          },
+          "response": []
+        },
+        {
+          "name": "Compression Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/compression",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "compression"
+              ]
+            },
+            "description": "Test compression"
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Practice",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/middleware/validation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "middleware",
+                "validation"
+              ]
+            },
+            "description": "Test validation"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Edge Cases & Validations",
+      "item": [
+        {
+          "name": "Validation Test Case #1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_2\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_3\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #4",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_4\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #5",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_5\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #6",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_6\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #7",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_7\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #8",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_8\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #9",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_9\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #10",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_10\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #11",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_11\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #12",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_12\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #13",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_13\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #14",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_14\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #15",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_15\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #16",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_16\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #17",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_17\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #18",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_18\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #19",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_19\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #20",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_20\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #21",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_21\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #22",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_22\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #23",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_23\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #24",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_24\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #25",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_25\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #26",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #27",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #28",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #29",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #30",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #31",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #32",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #33",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #34",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validation Test Case #35",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"test_field\":\"invalid_data_1\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/laws",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "laws"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "lawId",
+      "value": "6a1d551c02fc17ffd0218a1f",
+      "type": "string",
+      "description": "The ID of a valid law document. Modify this value to test mutations/GETs for a specific document."
+    }
+  ]
+}
