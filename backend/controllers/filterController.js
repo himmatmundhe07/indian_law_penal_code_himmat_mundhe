@@ -115,7 +115,13 @@ class FilterController {
   filterByCategory = async (req, res) => {
     const { category } = req.params;
     const { act = 'ipc', page, limit, sort } = req.query;
-    const queryObj = { category: new RegExp(category, 'i') };
+    const queryObj = {
+      $or: [
+        { category: new RegExp(category, 'i') },
+        { offenseCategory: new RegExp(category, 'i') },
+        { chapter_title: new RegExp(category, 'i') }
+      ]
+    };
     const result = await lawService.filterLaws({ queryObj, act, page, limit, sort });
     res.status(200).json({
       success: true,

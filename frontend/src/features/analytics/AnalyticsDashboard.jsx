@@ -41,7 +41,7 @@ export default function AnalyticsDashboard() {
   const normalizeArray = (data, nameKey = 'name', valueKey = 'count') => {
     if (!data) return [];
     if (Array.isArray(data)) return data.map(d => ({
-      name:  d[nameKey] || d._id || d.name || 'Unspecified',
+      name:  d[nameKey] || d.act || d.category || d.state || d.court || d.keyword || d.date || d._id || d.name || 'Unspecified',
       value: d[valueKey] || d.count || d.total || d.value || 0,
     }));
     return [];

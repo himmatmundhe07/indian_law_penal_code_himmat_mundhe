@@ -82,7 +82,7 @@ export default function Dashboard() {
   const normalizeChart = (data) => {
     if (!Array.isArray(data)) return [];
     return data.map(d => ({ 
-      name: d.category || d._id || d.name || 'Unspecified', 
+      name: d.act || d.category || d.state || d.court || d._id || d.name || 'Unspecified', 
       value: d.count || d.total || 0 
     }));
   };
