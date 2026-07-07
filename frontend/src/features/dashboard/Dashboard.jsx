@@ -53,7 +53,7 @@ export default function Dashboard() {
       const safeCount = (r) => {
         if (r.status !== 'fulfilled') return 0;
         const d = r.value?.data;
-        return d?.data?.count ?? d?.count ?? d?.total ?? (typeof d === 'number' ? d : 0);
+        return d?.data?.count ?? d?.data?.total ?? d?.data?.active ?? d?.data?.repealed ?? d?.count ?? d?.total ?? (typeof d === 'number' ? d : 0);
       };
 
       const safeData = (r) => r.status === 'fulfilled' ? (r.value?.data?.data || r.value?.data || []) : [];
@@ -82,7 +82,7 @@ export default function Dashboard() {
   const normalizeChart = (data) => {
     if (!Array.isArray(data)) return [];
     return data.map(d => ({ 
-      name: d._id || d.name || 'Unspecified', 
+      name: d.act || d.category || d.state || d.court || d._id || d.name || 'Unspecified', 
       value: d.count || d.total || 0 
     }));
   };
@@ -154,6 +154,7 @@ export default function Dashboard() {
                             angle={-30} 
                             textAnchor="end" 
                             interval={0} 
+                            tickFormatter={(v) => { const s = String(v || ''); return s.length > 15 ? s.substring(0,15) + '...' : s; }}
                           />
                           <YAxis 
                             tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 

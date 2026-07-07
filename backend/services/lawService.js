@@ -557,10 +557,13 @@ class LawService {
   async getAnalyticsByCategory({ act = 'ipc' }) {
     const resolveByCategory = async (actName) => {
       const LawModel = getLawModel(actName);
-      const docs = await LawModel.find({ isDeleted: { $ne: true } }, { category: 1, views: 1 });
+      const docs = await LawModel.find({ isDeleted: { $ne: true } }, { category: 1, offenseCategory: 1, chapter_title: 1, views: 1 });
       const stats = {};
       docs.forEach(doc => {
-        const cat = doc.category || 'Uncategorized';
+        let cat = doc.category || doc.offenseCategory || doc.chapter_title || 'Uncategorized';
+        if (cat && typeof cat === 'string') {
+          cat = cat.charAt(0).toUpperCase() + cat.slice(1);
+        }
         if (!stats[cat]) stats[cat] = { count: 0, totalViews: 0 };
         stats[cat].count++;
         stats[cat].totalViews += (doc.views || 0);

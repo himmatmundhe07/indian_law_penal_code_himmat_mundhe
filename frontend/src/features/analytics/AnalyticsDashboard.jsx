@@ -41,7 +41,7 @@ export default function AnalyticsDashboard() {
   const normalizeArray = (data, nameKey = 'name', valueKey = 'count') => {
     if (!data) return [];
     if (Array.isArray(data)) return data.map(d => ({
-      name:  d[nameKey] || d._id || d.name || 'Unspecified',
+      name:  d[nameKey] || d.act || d.category || d.state || d.court || d.keyword || d.date || d._id || d.name || 'Unspecified',
       value: d[valueKey] || d.count || d.total || d.value || 0,
     }));
     return [];
@@ -93,6 +93,7 @@ export default function AnalyticsDashboard() {
                   width={140} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(v) => { const s = String(v || ''); return s.length > 15 ? s.substring(0,15) + '...' : s; }}
                 />
                 <Tooltip 
                   contentStyle={{ backgroundColor: 'var(--color-bg-elevated)', border: '1px solid var(--color-rule)', borderRadius: '2px', color: 'var(--color-parchment)', fontFamily: 'var(--font-sans)', fontSize: '12px' }} 
@@ -153,6 +154,7 @@ export default function AnalyticsDashboard() {
                   interval={0} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(v) => { const s = String(v || ''); return s.length > 15 ? s.substring(0,15) + '...' : s; }}
                 />
                 <YAxis 
                   tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 
@@ -216,6 +218,7 @@ export default function AnalyticsDashboard() {
                   width={140} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(v) => { const s = String(v || ''); return s.length > 15 ? s.substring(0,15) + '...' : s; }}
                 />
                 <Tooltip 
                   contentStyle={{ backgroundColor: 'var(--color-bg-elevated)', border: '1px solid var(--color-rule)', borderRadius: '2px', color: 'var(--color-parchment)', fontFamily: 'var(--font-sans)', fontSize: '12px' }} 
@@ -270,6 +273,7 @@ export default function AnalyticsDashboard() {
                   tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(v) => { const s = String(v || ''); return s.length > 15 ? s.substring(0,15) + '...' : s; }}
                 />
                 <YAxis 
                   tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 
@@ -307,6 +311,7 @@ export default function AnalyticsDashboard() {
                   interval={0} 
                   axisLine={{ stroke: 'var(--color-rule)' }}
                   tickLine={{ stroke: 'var(--color-rule)' }}
+                  tickFormatter={(v) => { const s = String(v || ''); return s.length > 15 ? s.substring(0,15) + '...' : s; }}
                 />
                 <YAxis 
                   tick={{ fontFamily: 'var(--font-sans)', fontSize: 10, fill: 'var(--color-ink-secondary)' }} 
