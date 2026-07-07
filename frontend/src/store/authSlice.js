@@ -14,6 +14,18 @@ export const fetchProfile = createAsyncThunk(
   }
 );
 
+export const toggleLawBookmark = createAsyncThunk(
+  'auth/toggleBookmark',
+  async ({ id, act }, thunkAPI) => {
+    try {
+      const response = await api.patch(`${API_ROUTES.LAWS}/${id}/bookmark?act=${act}`);
+      return response.data.bookmarks;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response?.data?.message || err.message);
+    }
+  }
+);
+
 const getSafeUser = () => {
   const saved = localStorage.getItem('user');
   if (!saved || saved === 'undefined' || saved === 'null') return null;
@@ -53,6 +65,12 @@ const authSlice = createSlice({
     builder.addCase(fetchProfile.fulfilled, (state, action) => {
       state.user = { ...state.user, ...action.payload };
       localStorage.setItem('user', JSON.stringify(state.user));
+    });
+    builder.addCase(toggleLawBookmark.fulfilled, (state, action) => {
+      if (state.user) {
+        state.user.bookmarks = action.payload;
+        localStorage.setItem('user', JSON.stringify(state.user));
+      }
     });
   }
 });

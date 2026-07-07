@@ -181,6 +181,38 @@ class LawController {
       data: result.data
     });
   };
+  // PATCH /api/v1/laws/:id/bookmark
+  toggleBookmark = async (req, res) => {
+    const { id } = req.params;
+    const { act = 'ipc' } = req.query;
+    const userId = req.user.id; // Available from protect middleware
+
+    const User = require('../models/User');
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ success: false, message: 'User not found' });
+
+    // Validate the law exists
+    const law = await lawService.getLawById(act, id);
+    if (!law) return res.status(404).json({ success: false, message: 'Law not found' });
+
+    const isBookmarked = user.bookmarks.includes(id);
+
+    if (isBookmarked) {
+      user.bookmarks = user.bookmarks.filter(b => b.toString() !== id);
+      await lawService.updateLaw(act, id, { bookmarkCount: Math.max(0, (law.bookmarkCount || 1) - 1) });
+    } else {
+      user.bookmarks.push(id);
+      await lawService.updateLaw(act, id, { bookmarkCount: (law.bookmarkCount || 0) + 1 });
+    }
+
+    await user.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+      success: true,
+      message: isBookmarked ? 'Bookmark removed successfully.' : 'Bookmark added successfully.',
+      bookmarks: user.bookmarks
+    });
+  };
 }
 
 module.exports = new LawController();
