@@ -14,9 +14,15 @@ export const fetchProfile = createAsyncThunk(
   }
 );
 
+const getSafeUser = () => {
+  const saved = localStorage.getItem('user');
+  if (!saved || saved === 'undefined' || saved === 'null') return null;
+  try { return JSON.parse(saved); } catch (e) { return null; }
+};
+
 const initialState = {
   token: localStorage.getItem('token') || null,
-  user: JSON.parse(localStorage.getItem('user')) || null,
+  user: getSafeUser(),
   isAuthenticated: !!localStorage.getItem('token'),
 };
 
