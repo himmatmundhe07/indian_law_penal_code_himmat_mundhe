@@ -5,10 +5,15 @@ import api from '../../services/api';
 import { toast } from 'react-toastify';
 import SkeletonLoader from '../../components/common/SkeletonLoader';
 import LawHistoryDrawer from './LawHistoryDrawer';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleLawBookmark } from '../../store/authSlice';
+import { Bookmark } from 'lucide-react';
 
 export default function LawDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
   
   const [law, setLaw] = useState(null);
   const [summary, setSummary] = useState(null);
@@ -48,6 +53,20 @@ export default function LawDetailPage() {
     }
   };
 
+  const handleBookmarkToggle = async () => {
+    if (!user) {
+      toast.info('Please log in to bookmark laws');
+      navigate('/login');
+      return;
+    }
+    try {
+      await dispatch(toggleLawBookmark({ id, act: law.act.toLowerCase() })).unwrap();
+      toast.success('Bookmark updated!');
+    } catch (err) {
+      toast.error(err || 'Failed to update bookmark');
+    }
+  };
+
   if (loading) return <SkeletonLoader fullPage={true} />;
   if (!law) return <div className="p-8 text-center text-[var(--color-parchment)] font-serif">Law not found</div>;
 
@@ -72,8 +91,23 @@ export default function LawDetailPage() {
       <hr className="rule mb-4" />
       
       {/* Header Info */}
-      <div className="font-sans text-[11px] uppercase tracking-[0.06em] text-[var(--color-ink-secondary)] mb-3">
-        {law.act} · §{law.section} · {law.category}
+      <div className="flex justify-between items-start mb-3">
+        <div className="font-sans text-[11px] uppercase tracking-[0.06em] text-[var(--color-ink-secondary)]">
+          {law.act} · §{law.section} · {law.category}
+        </div>
+        {user && (
+          <button 
+            onClick={handleBookmarkToggle}
+            className="text-[var(--color-gold)] hover:text-[var(--color-maroon-bright)] transition-colors"
+            title="Toggle Bookmark"
+          >
+            <Bookmark 
+              size={20} 
+              fill={user.bookmarks?.includes(id) ? 'currentColor' : 'none'} 
+              strokeWidth={2}
+            />
+          </button>
+        )}
       </div>
 
       <h1 className="font-serif font-bold text-[32px] text-[var(--color-parchment)] leading-tight mb-6">

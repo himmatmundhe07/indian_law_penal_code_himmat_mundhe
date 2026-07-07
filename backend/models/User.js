@@ -43,7 +43,11 @@ const userSchema = new mongoose.Schema({
   isBanned: {
     type: Boolean,
     default: false
-  }
+  },
+  bookmarks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Law'
+  }]
 }, {
   timestamps: true
 });
